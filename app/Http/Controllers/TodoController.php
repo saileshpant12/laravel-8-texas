@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SaveTodoList;
 use Illuminate\Http\Request;
 use App\Models\Todo;
+use Illuminate\Support\Facades\DB;
 
 class TodoController extends Controller
 {
@@ -14,6 +16,7 @@ class TodoController extends Controller
      */
     public function index()
     {
+        dd(DB::table('todos')->get());
         $todos = Todo::latest()->get();
 
         return view('todo.index', ['todos' => $todos]);
@@ -35,17 +38,11 @@ class TodoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SaveTodoList $request)
     {
-
-        request()->validate([
-            'name' => 'required',
-            'due_date' => 'required|date'
-        ]);
-
         $todo = [
-            'name' => request('name'),
-            'due_date' => request('due_date')
+            'name' => $request->name,
+            'due_date' => $request->due_date
         ];
 
         $insertedTodo = Todo::create($todo);
@@ -89,12 +86,8 @@ class TodoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(SaveTodoList $request, $id)
     {
-        request()->validate([
-            'name' => 'required',
-            'due_date' => 'required|date'
-        ]);
 
         $todo = [
             'name' => request('name'),

@@ -25,3 +25,8 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
     Route::post('todo/complete/{id}', 'TodoController@complete');
 });
 
+Route::get('call-artisan', function () {
+   \Artisan::call('route:list');
+   return '<pre>'.\Artisan::output().'</pre>';
+});
+
