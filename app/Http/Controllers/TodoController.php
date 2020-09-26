@@ -16,7 +16,6 @@ class TodoController extends Controller
      */
     public function index()
     {
-        dd(DB::table('todos')->get());
         $todos = Todo::latest()->get();
 
         return view('todo.index', ['todos' => $todos]);

@@ -30,3 +30,19 @@ Route::get('call-artisan', function () {
    return '<pre>'.\Artisan::output().'</pre>';
 });
 
+Route::get('test', function () {
+////   $user = \App\Models\User::find(1)->posts()->where('title', 'Ms.')->get();
+////   dd($user);
+////   foreach ($user->posts as $post) {
+////       echo $post->title;
+////       echo '<br>';
+////   }
+////   dd($user->posts);
+//   //dd($user->phone->phone_number);
+//
+//    $post = \App\Models\Post::find(1);
+//    dd($post->user->name);
+//    $post = \App\Models\Post::find(1);
+//    dd($post->tags);
+});
+
